@@ -16,7 +16,7 @@ namespace MyApp
                 { "7", "сем"},
                 { "8", "восем"},
                 { "9", "девят"},
-                { "10", "дест"},
+                { "10", "десят"},
                 { "11", "одиннадцат"},
                 { "12", "двенадцат"},
                 { "13", "тринадцат"},
@@ -32,7 +32,7 @@ namespace MyApp
                 { "50", "пят_десят"},
                 { "60", "шест_десят"},
                 { "70", "сем_десят"},
-                { "80", "восем_десят"},
+                { "80", "вос_десят"},
                 { "90", "девяносто"},
                 { "100", "сто"},
                 { "200", "дв_с"},
@@ -41,7 +41,7 @@ namespace MyApp
                 { "500", "пят_с"},
                 { "600", "шест_с"},
                 { "700", "сем_с"},
-                { "800", "восем_с"},
+                { "800", "вос_с"},
                 { "900", "девят_с"},
                 { "000", "тысяч"},
                 { "000000", "миллион"},
@@ -124,15 +124,25 @@ namespace MyApp
             {"Т", "а"},
             {"П", "а"},
         };
-        //числа 50 60 70 80
+        //числа 50 60 70
         public static Dictionary<string, string> TenthGroup = new Dictionary<string, string>()
         {
-            {"И", "ь"},
-            {"Р", "и"},
-            {"Д", "и"},
-            {"В", "ь"},
-            {"Т", "ью"},
-            {"П", "и"},
+            {"И", "ь_"},
+            {"Р", "и_и"},
+            {"Д", "и_и"},
+            {"В", "ь_"},
+            {"Т", "ью_ью"},
+            {"П", "и_и"},
+        };
+        //число 80
+        public static Dictionary<string, string> EigthGroup = new Dictionary<string, string>()
+        {
+            {"И", "емь_"},
+            {"Р", "ьми_и"},
+            {"Д", "ьми_и"},
+            {"В", "емь_"},
+            {"Т", "ьмью_ью"},
+            {"П", "ьми_и"},
         };
         //число 200
         public static Dictionary<string, string> TwoHundreadGroup = new Dictionary<string, string>()
@@ -173,6 +183,16 @@ namespace MyApp
             {"В", "ь_от"},
             {"Т", "ью_тами"},
             {"П", "и_тах"},
+        };
+        //число 800
+        public static Dictionary<string, string> EightHundreadsGroup = new Dictionary<string, string>()
+        {
+            {"И", "емь_от"},
+            {"Р", "ьми_от"},
+            {"Д", "ьми_там"},
+            {"В", "емь_от"},
+            {"Т", "ьмью_тами"},
+            {"П", "ьми_тах"},
         };
         //склонение слов миллион миллиард в мн числе
         public static Dictionary<string, string> MillionGroup = new Dictionary<string, string>()
@@ -418,15 +438,27 @@ namespace MyApp
                     // склонение чисел 90 и 100
                     if (listNumbers[i] == "90" || listNumbers[i] == "100")
                         if (sCase != "И" && sCase != "В")
-                            result += literalNumbersDict[listNumbers[i]].Substring(0, literalNumbersDict[listNumbers[i]].Length - 1) + FourTeensGroup[sCase] + " ";
+                            result += literalNumbersDict[listNumbers[i]].Substring(0, 
+                                literalNumbersDict[listNumbers[i]].Length - 1) + FourTeensGroup[sCase] + " ";
                         else
                             result += literalNumbersDict[listNumbers[i]] + " ";
 
                     // склонение чисел 50 60 70 80
                     if ((int.Parse(listNumbers[i]) >= 50) && (int.Parse(listNumbers[i]) <= 80))
                     {
-                        var numberSplited = literalNumbersDict[listNumbers[i]].Split("_");
-                        result += numberSplited[0] + TenthGroup[sCase] + numberSplited[1] + TenthGroup[sCase] + " ";
+                        if (listNumbers[i] == "80")
+                        {
+                            var numberSplited = literalNumbersDict[listNumbers[i]].Split("_");
+                            var endingSplited = EigthGroup[sCase].Split("_");
+                            result += numberSplited[0] + endingSplited[0] + numberSplited[1] + endingSplited[1] + " ";
+                        }
+                        else
+                        {
+                            var numberSplited = literalNumbersDict[listNumbers[i]].Split("_");
+                            var endingSplited = TenthGroup[sCase].Split("_");
+                            result += numberSplited[0] + endingSplited[0] + numberSplited[1] + endingSplited[1] + " ";
+                        }
+
                     }
 
                     //склонение числа 200
@@ -456,15 +488,27 @@ namespace MyApp
                     //склонение чисел 500 600 700 800 900
                     if ((int.Parse(listNumbers[i]) >= 500) && (int.Parse(listNumbers[i]) <= 900))
                     {
-                        var numberSplited = literalNumbersDict[listNumbers[i]].Split("_");
-                        var endingSplited = HundreadsGroup[sCase].Split("_");
-                        result += numberSplited[0] + endingSplited[0] + numberSplited[1] + endingSplited[1] + " ";
+                        if (listNumbers[i] == "800")
+                        {
+                            var numberSplited = literalNumbersDict[listNumbers[i]].Split("_");
+                            var endingSplited = EightHundreadsGroup[sCase].Split("_");
+                            result += numberSplited[0] + endingSplited[0] + numberSplited[1] + endingSplited[1] + " ";
+                        }
+                        else
+                        {
+                            var numberSplited = literalNumbersDict[listNumbers[i]].Split("_");
+                            var endingSplited = HundreadsGroup[sCase].Split("_");
+                            result += numberSplited[0] + endingSplited[0] + numberSplited[1] + endingSplited[1] + " ";
+                        }
                     }
 
                     // склонение слов миллион миллиард
                     if (listNumbers[i] == "000000" || listNumbers[i] == "000000000")
                         if (listNumbers[i - 1] == "1")
                             result += literalNumbersDict[listNumbers[i]] + OneMillionGroup[sCase] + " ";
+                        else if ((listNumbers[i - 1][listNumbers[i - 1].Length-1] == '0') &&
+                                 (sCase == "И" || sCase == "В"))
+                            result += literalNumbersDict[listNumbers[i]] + MillionGroup["Р"] + " ";
                         else
                             result += literalNumbersDict[listNumbers[i]] + MillionGroup[sCase] + " ";
 
@@ -472,6 +516,9 @@ namespace MyApp
                     if (listNumbers[i] == "000")
                         if (listNumbers[i - 1] == "1")
                             result += literalNumbersDict[listNumbers[i]] + OneThoushandGroup[sCase] + " ";
+                        else if ((listNumbers[i - 1][listNumbers[i - 1].Length - 1] == '0') &&
+                                  (sCase == "И" || sCase == "В"))
+                            result += literalNumbersDict[listNumbers[i]] + ThoushandGroup["Р"] + " ";
                         else
                             result += literalNumbersDict[listNumbers[i]] + ThoushandGroup[sCase] + " ";
 
@@ -491,6 +538,7 @@ namespace MyApp
             Console.WriteLine(sumProp(0, "М", "Т"));
             Console.WriteLine(sumProp(-1, "G", "U"));
             Console.WriteLine(sumProp(-1, "М", "R"));
+
             Console.WriteLine(sumProp(987654432343, "М", "Т"));
             Console.WriteLine(sumProp(31, "М", "Р"));
             Console.WriteLine(sumProp(31, "Ж", "Р"));
@@ -505,6 +553,14 @@ namespace MyApp
             Console.WriteLine(sumProp(911_900_956_112, "М", "Д"));
             Console.WriteLine(sumProp(100_000_000_000, "М", "Д"));
 
+            Console.WriteLine(sumProp(80, "М", "Р"));
+            Console.WriteLine(sumProp(180310, "Ж", "И"));
+            Console.WriteLine(sumProp(800, "С", "И"));
+            Console.WriteLine(sumProp(800, "С", "Р"));
+            Console.WriteLine(sumProp(800, "М", "И"));
+            Console.WriteLine(sumProp(800, "Ж", "Т"));
+            Console.WriteLine(sumProp(1000, "С", "И"));
+            Console.WriteLine(sumProp(900_100_200_500, "Ж", "П"));
         }
     }
 }
