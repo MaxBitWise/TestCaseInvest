@@ -1,0 +1,15 @@
+C:\Users\User\source\repos\TestCaseInvest\TestCaseInvest\bin\Debug\net6.0\TestCaseInvest.exe
+C:\Users\User\source\repos\TestCaseInvest\TestCaseInvest\bin\Debug\net6.0\TestCaseInvest.deps.json
+C:\Users\User\source\repos\TestCaseInvest\TestCaseInvest\bin\Debug\net6.0\TestCaseInvest.runtimeconfig.json
+C:\Users\User\source\repos\TestCaseInvest\TestCaseInvest\bin\Debug\net6.0\TestCaseInvest.dll
+C:\Users\User\source\repos\TestCaseInvest\TestCaseInvest\bin\Debug\net6.0\TestCaseInvest.pdb
+C:\Users\User\source\repos\TestCaseInvest\TestCaseInvest\obj\Debug\net6.0\TestCaseInvest.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\TestCaseInvest\TestCaseInvest\obj\Debug\net6.0\TestCaseInvest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\TestCaseInvest\TestCaseInvest\obj\Debug\net6.0\TestCaseInvest.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\TestCaseInvest\TestCaseInvest\obj\Debug\net6.0\TestCaseInvest.AssemblyInfo.cs
+C:\Users\User\source\repos\TestCaseInvest\TestCaseInvest\obj\Debug\net6.0\TestCaseInvest.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\TestCaseInvest\TestCaseInvest\obj\Debug\net6.0\TestCaseInvest.dll
+C:\Users\User\source\repos\TestCaseInvest\TestCaseInvest\obj\Debug\net6.0\refint\TestCaseInvest.dll
+C:\Users\User\source\repos\TestCaseInvest\TestCaseInvest\obj\Debug\net6.0\TestCaseInvest.pdb
+C:\Users\User\source\repos\TestCaseInvest\TestCaseInvest\obj\Debug\net6.0\TestCaseInvest.genruntimeconfig.cache
+C:\Users\User\source\repos\TestCaseInvest\TestCaseInvest\obj\Debug\net6.0\ref\TestCaseInvest.dll
