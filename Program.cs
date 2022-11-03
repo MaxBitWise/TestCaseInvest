@@ -359,13 +359,7 @@ namespace MyApp
             else
             {
                 string result = "";
-                var listStrings = new List<string>();
                 var listNumbers = NumberSplit(nSum);
-
-                foreach (var el in listNumbers)
-                {
-                    listStrings.Add(Program.literalNumbersDict[el]);
-                }
 
                 for (int i = 0; i < listNumbers.Count; i++)
                 {
